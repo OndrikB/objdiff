@@ -162,8 +162,8 @@ jobs:
         uses: dtolnay/rust-toolchain@stable
         with:
           targets: ${{ matrix.target }}
-      - name: Setup sccache
-        uses: mozilla-actions/sccache-action@v0.0.4
+#      - name: Setup sccache
+#        uses: mozilla-actions/sccache-action@v0.0.4
       - name: Cargo build
         env:
           RUSTC_WRAPPER: sccache
@@ -174,7 +174,7 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.name }}
+          name: cli-${{ matrix.name }}
           path: |
             ${{ env.CARGO_TARGET_DIR }}/${{ matrix.target }}/${{ env.BUILD_PROFILE }}/objdiff-cli
             ${{ env.CARGO_TARGET_DIR }}/${{ matrix.target }}/${{ env.BUILD_PROFILE }}/objdiff-cli.exe
@@ -228,7 +228,7 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.name }}
+          name: gui-${{ matrix.name }}
           path: |
             ${{ env.CARGO_TARGET_DIR }}/${{ matrix.target }}/${{ env.BUILD_PROFILE }}/objdiff
             ${{ env.CARGO_TARGET_DIR }}/${{ matrix.target }}/${{ env.BUILD_PROFILE }}/objdiff.exe
